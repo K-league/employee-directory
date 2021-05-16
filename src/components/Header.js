@@ -11,4 +11,4 @@ class Header extends Component{
         );
     }
 };
-export defualt Header;
+export default Header;
