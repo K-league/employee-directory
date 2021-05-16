@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-//import data area component
+import DataArea from "./DataArea.js";
 //import style folder
-export defualt class Main extends Component{
-    render(){
-        return (<DataArea>)
+
+export defualt class Main extends Component {
+    render() {
+        return (
+            <DataArea />
+        );
     }
-}
+};

@@ -13,7 +13,4 @@ function Nav({handleSearchChange}) {
         </nav>
     )
 }
-
-//line 9 put searchbox
-//handle searchChange in Nav fucnt
 export default Nav;
