@@ -4,6 +4,10 @@ import SearchBox from "./SearchBox.js";
 
 //function
 function Nav({handleSearchChange}) {
+    handleSearchChange = (data) => {
+        console.log(data);
+        return;
+    }
     return (
         <nav className= "navbar navbar-expand navbar-light bg-light" >
             <div>
