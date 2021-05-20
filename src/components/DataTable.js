@@ -3,6 +3,7 @@ import DataBody from "./DataBody.js";
 import DataArea from "./DataArea.js";
 import API from "../components/utils/API.js";
 import SearchBox from "./SearchBox.js";
+import "./styles/DataTable.css";
 
 class DataTable extends Component {
     state = {
@@ -11,18 +12,25 @@ class DataTable extends Component {
     };
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
+        console.log("here");
         this.searchRandomUser("GB");
     }
 
     searchRandomUser = query => {
         API.search(query)
         .then(res => this.setState({ results: res.data.data }))
+        // .then(res => console.log(res))
         .catch(err => console.log(err));
     };
 
     handleSearchChange = event => {
-        //from control SearchBox??
-    }
+        const value = event.target.value;
+        const name = event.target.value;
+        //from control SearchBox
+        this.setState({
+            [name]: value
+        });
+    };
     //when form is submitted, search API for `this.state.search`
     handleFormSubmit = event => {
         event.preventDefault();

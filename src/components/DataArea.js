@@ -1,5 +1,6 @@
 import React from "react";
 //styles
+// import "./styles/DataArea.css";
 
 function DataArea(props) {
     return (

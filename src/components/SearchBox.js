@@ -1,5 +1,6 @@
 import React from "react";
 //import style folder
+import "./styles/SearchBox.css";
 
 function SearchBox({handleSearchChange}) {
     return (
@@ -12,6 +13,9 @@ function SearchBox({handleSearchChange}) {
                 onChange = {e => handleSearchChange(e)}
                 >
                 </input>
+            </form>
+            <form className="search">
+                <button type="submit">Search</button>
             </form>
         </div>
     )

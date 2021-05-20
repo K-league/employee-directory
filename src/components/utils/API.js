@@ -10,6 +10,7 @@ export default {
   }
 };
 
+
 //https://randomuser.me/api/?gender=female
 //https://randomuser.me/api/?nat=gb
 //https://randomuser.me/api/?dob=1993-07-20T09:44:18.674Z
