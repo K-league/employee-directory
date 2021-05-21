@@ -12,11 +12,12 @@ class DataTable extends Component {
     };
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
-        console.log("here");
+        console.log("componentDidMount");
         this.searchRandomUser("GB");
     }
 
     searchRandomUser = query => {
+        console.log("searchRandomUser hit");
         API.search(query)
         .then(res => this.setState({ results: res.data.data }))
         // .then(res => console.log(res))
@@ -24,6 +25,7 @@ class DataTable extends Component {
     };
 
     handleSearchChange = event => {
+        console.log("handleSearchChange hit");
         const value = event.target.value;
         const name = event.target.value;
         //from control SearchBox
@@ -33,6 +35,7 @@ class DataTable extends Component {
     };
     //when form is submitted, search API for `this.state.search`
     handleFormSubmit = event => {
+        console.log("handleFormSubmit hit");
         event.preventDefault();
         this.searchRandomUser(this.state.search);
     };

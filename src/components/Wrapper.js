@@ -2,10 +2,10 @@ import React from "react";
 //css for wrapper in style folder
 import "./styles/Wrapper.css";
 
-function Wrapper() {
+function Wrapper({children}) {
     return(
         <div className="wrapper">
-            {/* {children} */}
+            {children}
 
         </div>
     )
