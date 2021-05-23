@@ -10,7 +10,8 @@ class DataTable extends Component {
 
     state = {
         search: "",
-        users: []
+        users: [], 
+        order: "ascend"
     };
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
@@ -37,6 +38,54 @@ class DataTable extends Component {
             })
             .catch(err => console.log("error on api:" + err));
     };
+    headings = [
+        { name: "ID", key: "id"},
+        { name: "Thumbnail", key: "thumbnail"},
+        { name: "First Name", key: "firstname"},
+        { name: "Last Name", key: "lastname"},
+        { name: "Email", key: "email"},
+        { name: "Age", key: "age"}
+    ]
+    handleSort = (heading) => {
+        if (this.state.order === "descend") {
+            this.setState({
+                order: "ascend",
+            })
+        } else {
+            this.setState({
+                order: "descend",
+            })
+        }
+
+        console.log("heading:"+heading);
+
+        const compareFunct = (a, b) => {
+            if (this.state.order === "ascend") {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "lastname") {
+                    return a[heading].localeCompare(b[heading])
+                } else {
+                    return a[heading] - b[heading]
+                }
+            } else {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "lastname") {
+                    return b[heading].localeCompare(a[heading])
+                } else {
+                    return b[heading] - a[heading]
+                }
+            }
+        
+        }
+        const sortUsers = this.state.users.sort(compareFunct)
+        this.setState({ users: sortUsers })
+    }
 
     handleSearchChange = event => {
         this.setState({filter: event.target.value});
@@ -62,15 +111,18 @@ class DataTable extends Component {
                     handleSearchChange={this.handleSearchChange}
                 />
 
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            {this.headings.map(item => {
+                                return <th scope="col" onClick={e => this.handleSort(item.key)}>{item.name}</th>
+                            })}
+                            {/* <th scope="col">ID</th>
                             <th scope="col">Image</th>
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Age</th>
+                            <th scope="col">Age</th> */}
                         </tr>
                     </thead>
                     <tbody>
