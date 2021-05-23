@@ -21,10 +21,11 @@ class DataTable extends Component {
     getAllUsers = query => {
         console.log("getAllUsers hit");
         API.getUsers(this.seed, this.limit)
-        .then(res => {
-            this.setState({ results: res.data.results });
-        })
-        .catch(err => console.log("error on api:" + err));
+            .then(res => {
+                this.setState({ results: res.data.results });
+                console.log(this.state);
+            })
+            .catch(err => console.log("error on api:" + err));
     };
 
     handleSearchChange = event => {
@@ -46,12 +47,32 @@ class DataTable extends Component {
     render() {
         return (
             <div>
-                <SearchBox 
-                search={this.state.search}
-                handleFormSubmit={this.handleFormSubmit}
-                handleSearchChange={this.handleSearchChange}
+                <SearchBox
+                    search={this.state.search}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleSearchChange={this.handleSearchChange}
                 />
-                {/* <DataBody results={this.state.results} /> */}
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.results.map(user => {
+                            // return <div>{user.name.first} {user.name.last}</div>
+
+                            return <DataBody user={user} />
+
+                        })}
+                    </tbody>
+                </table>
             </div>
         );
     }
