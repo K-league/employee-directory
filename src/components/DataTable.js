@@ -21,8 +21,9 @@ class DataTable extends Component {
     getAllUsers = query => {
         console.log("getAllUsers hit");
         API.getUsers(this.seed, this.limit)
-        .then(res => this.setState({ results: res.data.data }))
-        // .then(res => console.log(res))
+        .then(res => {
+            this.setState({ results: res.data.results });
+        })
         .catch(err => console.log("error on api:" + err));
     };
 
@@ -50,7 +51,7 @@ class DataTable extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 handleSearchChange={this.handleSearchChange}
                 />
-                <DataBody results={this.state.results} />
+                {/* <DataBody results={this.state.results} /> */}
             </div>
         );
     }
