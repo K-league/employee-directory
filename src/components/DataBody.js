@@ -6,12 +6,12 @@ function DataBody({user}) {
     // image, firstname, lastname, email, DOB {props.user.image}, {props.user.firstname}, {props.user.lastname}, {props.user.email}, {props.user.DOB}
     return (
         <tr>
-        <th scope="row">{user.id.value}</th>
-        <td><img src={user.picture.thumbnail} alt={user.name.first}/></td>
-        <td>{user.name.first}</td>
-        <td>{user.name.last}</td>
+        <th scope="row">{user.id}</th>
+        <td><img src={user.thumbnail} alt={user.firstname}/></td>
+        <td>{user.firstname}</td>
+        <td>{user.lastname}</td>
         <td>{user.email}</td>
-        <td>{user.dob.age}</td>
+        <td>{user.age}</td>
       </tr>
     )
 }

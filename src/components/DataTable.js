@@ -10,7 +10,7 @@ class DataTable extends Component {
 
     state = {
         search: "",
-        results: []
+        users: []
     };
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
@@ -18,12 +18,22 @@ class DataTable extends Component {
         this.getAllUsers();
     }
 
-    getAllUsers = query => {
+    getAllUsers() {
         console.log("getAllUsers hit");
         API.getUsers(this.seed, this.limit)
             .then(res => {
-                this.setState({ results: res.data.results });
-                console.log(this.state);
+                //this.setState({ results: res.data.results });
+                let users = res.data.results.map(user => {
+                    return {
+                        id: user.id.value,
+                        thumbnail: user.picture.thumbnail,
+                        firstname: user.name.first,
+                        lastname: user.name.last,
+                        email: user.email,
+                        age: user.dob.age
+                    }
+                });
+                this.setState({users});
             })
             .catch(err => console.log("error on api:" + err));
     };
@@ -34,10 +44,10 @@ class DataTable extends Component {
 
     getDisplayUsers() {
         if (!this.state.filter) {
-            return this.state.results;
+            return this.state.users;
         } else {
             let filter = this.state.filter.toLowerCase();
-            return this.state.results.filter(user => user.name.first.toLowerCase().includes(filter) || user.name.last.toLowerCase().includes(filter))
+            return this.state.users.filter(user => user.firstname.toLowerCase().includes(filter) || user.lastname.toLowerCase().includes(filter))
         }
         
     }
