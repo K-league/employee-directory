@@ -29,22 +29,28 @@ class DataTable extends Component {
     };
 
     handleSearchChange = event => {
-        console.log("handleSearchChange hit");
-        const value = event.target.value;
-        const name = event.target.value;
+        console.log("handleSearchChange hit:" + event.target.value);
+        this.setState({filter: event.target.value});
+        // const value = event.target.value;
+        // const name = event.target.value;
         //from control SearchBox
-        this.setState({
-            [name]: value
-        });
-    };
-    //when form is submitted, search API for `this.state.search`
-    handleFormSubmit = event => {
-        console.log("handleFormSubmit hit");
-        event.preventDefault();
-        this.searchRandomUser(this.state.search);
+        // this.setState({
+        //     [name]: value
+        // });
     };
 
+    getDisplayUsers() {
+        if (!this.state.filter) {
+            return this.state.results;
+        } else {
+            let filter = this.state.filter;
+            return this.state.results.filter(user => user.name.first.toLowerCase().includes(filter) || user.name.last.toLowerCase().includes(filter))
+        }
+        
+    }
+
     render() {
+        let users = this.getDisplayUsers();
         return (
             <div>
                 <SearchBox
@@ -65,7 +71,7 @@ class DataTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.results.map(user => {
+                        {users.map(user => {
                             // return <div>{user.name.first} {user.name.last}</div>
 
                             return <DataBody user={user} />

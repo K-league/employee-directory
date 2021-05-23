@@ -1,8 +1,8 @@
 import React from "react";
 // import "./styles/DataBody.css"
 
-function DataBody(props) {
-    let user = props.user;
+function DataBody({user}) {
+    // let user = props.user;
     // image, firstname, lastname, email, DOB {props.user.image}, {props.user.firstname}, {props.user.lastname}, {props.user.email}, {props.user.DOB}
     return (
         <tr>

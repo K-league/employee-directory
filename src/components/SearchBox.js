@@ -8,14 +8,11 @@ function SearchBox({handleSearchChange}) {
             <form className="form-inline">
                 <input className="form-control"
                 type = "search"
-                placeholder = "Input here!"
+                placeholder = "Filter by name"
                 aria-label = "search"
                 onChange = {e => handleSearchChange(e)}
                 >
                 </input>
-            </form>
-            <form className="search">
-                <button type="submit">Search</button>
             </form>
         </div>
     )
