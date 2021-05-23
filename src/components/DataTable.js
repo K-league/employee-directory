@@ -29,21 +29,14 @@ class DataTable extends Component {
     };
 
     handleSearchChange = event => {
-        console.log("handleSearchChange hit:" + event.target.value);
         this.setState({filter: event.target.value});
-        // const value = event.target.value;
-        // const name = event.target.value;
-        //from control SearchBox
-        // this.setState({
-        //     [name]: value
-        // });
     };
 
     getDisplayUsers() {
         if (!this.state.filter) {
             return this.state.results;
         } else {
-            let filter = this.state.filter;
+            let filter = this.state.filter.toLowerCase();
             return this.state.results.filter(user => user.name.first.toLowerCase().includes(filter) || user.name.last.toLowerCase().includes(filter))
         }
         

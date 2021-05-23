@@ -8,13 +8,10 @@ import Wrapper from './components/Wrapper';
 function App() {
   return (
     <div className="App">
-      {/* <Wrapper>
       <Header/>
-      <Nav/>
-      <Main/>
-      </Wrapper> */}
-      <Header/>
+      <Wrapper>
       <DataTable/>
+      </Wrapper>
     </div>
   );
 }
