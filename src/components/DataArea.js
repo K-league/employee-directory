@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Nav from ".Nav.js";
+import Nav from "./Nav.js";
 import DataTable from "./DataTable";
 import API from "./utils/API";
 //styles
