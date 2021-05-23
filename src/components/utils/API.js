@@ -12,4 +12,6 @@ function getUsers(seed, limit) {
 //https://randomuser.me/api/?nat=gb
 //https://randomuser.me/api/?dob=1993-07-20T09:44:18.674Z
 
-export default getUsers;
+const exports = {getUsers};
+
+export default exports;

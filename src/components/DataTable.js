@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import DataBody from "./DataBody.js";
-import DataArea from "./DataArea.js";
 import API from "../components/utils/API.js";
 import SearchBox from "./SearchBox.js";
 import "./styles/DataTable.css";
 
 class DataTable extends Component {
+    seed = "employeeDirectory";
+    limit = 50;
+
     state = {
         search: "",
         results: []
@@ -13,15 +15,15 @@ class DataTable extends Component {
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
         console.log("componentDidMount");
-        this.searchRandomUser("GB");
+        this.getAllUsers();
     }
 
-    searchRandomUser = query => {
-        console.log("searchRandomUser hit");
-        API.search(query)
+    getAllUsers = query => {
+        console.log("getAllUsers hit");
+        API.getUsers(this.seed, this.limit)
         .then(res => this.setState({ results: res.data.data }))
         // .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .catch(err => console.log("error on api:" + err));
     };
 
     handleSearchChange = event => {
@@ -54,4 +56,4 @@ class DataTable extends Component {
     }
 }
 
-export default DataBody;
+export default DataTable;
