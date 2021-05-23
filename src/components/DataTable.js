@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DataBody from "./DataBody.js";
 import API from "../components/utils/API.js";
 import SearchBox from "./SearchBox.js";
+import SortingArrow from "./SortingArrow.js";
 import "./styles/DataTable.css";
 
 class DataTable extends Component {
@@ -11,7 +12,8 @@ class DataTable extends Component {
     state = {
         search: "",
         users: [], 
-        order: "ascend"
+        order: "ascend",
+        heading: null
     };
     // when this component mounts, search the RandomUser API for users from GB
     componentDidMount() {
@@ -38,26 +40,19 @@ class DataTable extends Component {
             })
             .catch(err => console.log("error on api:" + err));
     };
-    headings = [
-        { name: "ID", key: "id"},
-        { name: "Thumbnail", key: "thumbnail"},
-        { name: "First Name", key: "firstname"},
-        { name: "Last Name", key: "lastname"},
-        { name: "Email", key: "email"},
-        { name: "Age", key: "age"}
-    ]
+    
     handleSort = (heading) => {
         if (this.state.order === "descend") {
             this.setState({
                 order: "ascend",
+                heading: heading
             })
         } else {
             this.setState({
                 order: "descend",
+                heading: heading
             })
         }
-
-        console.log("heading:"+heading);
 
         const compareFunct = (a, b) => {
             if (this.state.order === "ascend") {
@@ -65,7 +60,7 @@ class DataTable extends Component {
                     return 1;
                 } else if (b[heading] === undefined) {
                     return -1;
-                } else if (heading === "lastname") {
+                } else if (heading === "lastname" || heading === "firstname" || heading === "email") {
                     return a[heading].localeCompare(b[heading])
                 } else {
                     return a[heading] - b[heading]
@@ -75,7 +70,7 @@ class DataTable extends Component {
                     return 1;
                 } else if (b[heading] === undefined) {
                     return -1;
-                } else if (heading === "lastname") {
+                } else if (heading === "lastname" || heading === "firstname" || heading === "email") {
                     return b[heading].localeCompare(a[heading])
                 } else {
                     return b[heading] - a[heading]
@@ -114,22 +109,31 @@ class DataTable extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            {this.headings.map(item => {
-                                return <th scope="col" onClick={e => this.handleSort(item.key)}>{item.name}</th>
-                            })}
-                            {/* <th scope="col">ID</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Image</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Age</th> */}
+                            <th scope="col" onClick={e => this.handleSort("firstname")}>
+                                First
+                                <SortingArrow headingMatches={this.state.heading === "firstname"} order={this.state.order} />
+                            </th>
+                            <th scope="col" onClick={e => this.handleSort("lastname")}>
+                                Last
+                                <SortingArrow headingMatches={this.state.heading === "lastname"} order={this.state.order} />
+                            </th>
+                            <th scope="col" onClick={e => this.handleSort("email")}>
+                                Email
+                                <SortingArrow headingMatches={this.state.heading === "email"} order={this.state.order} />
+                            </th>
+                            <th scope="col" onClick={e => this.handleSort("age")}>
+                                Age
+                                <SortingArrow headingMatches={this.state.heading === "age"} order={this.state.order} />
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => {
+                        {users.map((user, key) => {
                             // return <div>{user.name.first} {user.name.last}</div>
 
-                            return <DataBody user={user} />
+                            return <DataBody user={user} key={key} />
 
                         })}
                     </tbody>
