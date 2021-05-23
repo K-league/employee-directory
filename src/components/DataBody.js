@@ -2,9 +2,13 @@ import React from "react";
 // import "./styles/DataBody.css"
 
 function DataBody(props) {
+    let results = props.results;
+    if (!results) {
+        results = [];
+    }
     return (
         <ul className="list-group">
-            {props.results.map(result => (
+            {results.map(result => (
                 <li className="list-group-item" key={result.id}>
                     {{
                         "results": [

@@ -48,7 +48,7 @@ class DataTable extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 handleSearchChange={this.handleSearchChange}
                 />
-                <DataBody resutls={this.state.results} />
+                <DataBody results={this.state.results} />
             </div>
         );
     }
