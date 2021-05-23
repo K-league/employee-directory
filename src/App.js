@@ -7,11 +7,12 @@ import Wrapper from './components/Wrapper';
 function App() {
   return (
     <div className="App">
-      <Wrapper>
+      {/* <Wrapper>
       <Header/>
       <Nav/>
       <Main/>
-      </Wrapper>
+      </Wrapper> */}
+      <Header/>
     </div>
   );
 }

@@ -5,10 +5,10 @@ import "./styles/Header.css";
 class Header extends Component{
     render(){
         return (
-            <div className="header">
-            <h1>Random User</h1>
-            <p>Search a Random User</p>
-            </div>
+            <header className="header">
+            <h1>Employee Directory</h1>
+            <p>View and filter all your employees in one place</p>
+            </header>
         );
     }
 };

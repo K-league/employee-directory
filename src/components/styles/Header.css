@@ -1,5 +1,5 @@
 .header {
-    background: #b71775;
+    background: #340e24;
     height: 200px;
   }
   
@@ -9,5 +9,9 @@
     text-align: center;
     color: white;
     font-size: 3rem;
+  }
+
+  .header p {
+    color: white;
   }
   
