@@ -64,7 +64,7 @@ export default class DataArea extends Component {
 
     componentDidMount() {
         console.log("componentDidMount");
-        this.searchRandomUser("GB");
+        // this.searchRandomUser("GB");
     }
     
     handleSearchChange = event => {
