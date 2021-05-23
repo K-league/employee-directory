@@ -58,13 +58,15 @@ export default class DataArea extends Component {
             }
         
         }
-    const sortUsers = this.state.filterUsers.sort(compareFunct)
-    this.setState({ filterUsers: sortUsers })
+        const sortUsers = this.state.filterUsers.sort(compareFunct)
+        this.setState({ filterUsers: sortUsers })
+    }
 
     componentDidMount() {
         console.log("componentDidMount");
         this.searchRandomUser("GB");
     }
+    
     handleSearchChange = event => {
         console.log("handleSearchChange hit");
         const value = event.target.value;
